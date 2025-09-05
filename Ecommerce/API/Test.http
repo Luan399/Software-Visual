@@ -1,0 +1,16 @@
+###
+GET http://localhost:5257
+
+###
+
+GET http://localhost:5257/api/produto/listar
+###
+
+POST  http://localhost:5257/api/produto/cadastrar
+Content-Type: application/json
+
+{
+    "nome":"Chama",
+    "quantidade": 50,
+    "preco": 85.05
+}
