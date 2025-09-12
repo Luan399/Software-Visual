@@ -14,3 +14,6 @@ Content-Type: application/json
     "quantidade": 50,
     "preco": 85.05
 }
+
+###
+GET http://localhost:5257/api/produto/listar
