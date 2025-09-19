@@ -49,6 +49,35 @@ app.MapGet("/api/produto/buscar/{nome}", ([FromRoute] string nome) =>
     return Results.Ok(produto);
 });
 
+app.MapDelete("/api/produto/remover/{id}", ([FromRoute] string id) =>
+{
+    Produto? resultado = produtos.FirstOrDefault(p => p.Id == id);  // Usando 'Id' para buscar
+    if (resultado == null)
+    {
+        return Results.NotFound("Produto não encontrado");
+    }
+    produtos.Remove(resultado);
+    return Results.Ok(resultado);  // Retorna o produto removido
+});
+
+app.MapPatch("/api/produto/alterar/{id}", ([FromRoute] string id ,[FromBody]Produto produtoAlterado) =>
+{
+    Produto? resultado = produtos.FirstOrDefault(p => p.Id == id);  // Usando 'Id' para buscar
+    if (resultado == null)
+    {
+        return Results.NotFound("Produto não encontrado");
+    }
+    resultado.Nome = produtoAlterado.Nome;
+    resultado.Quantidade = produtoAlterado.Quantidade;
+    resultado.Preco = produtoAlterado.Preco;
+
+    return Results.Ok(resultado);  // Retorna o produto removido
+});
+
+
+
+
+
 app.Run();
 
 
